@@ -1,7 +1,5 @@
-#
-# Copyright (C) 2021 The Android Open-Source Project
-#
-# SPDX-License-Identifier: Apache-2.0
+# Copyright (C) 2011-2016, 2018-2022 The Linux Foundation
+# SPDX-License-Identifier: BSD-3-Clause
 #
 
 on early-init
@@ -13,7 +11,7 @@ on init
     mkdir /config/usb_gadget/g1 0770 shell shell
     write /config/usb_gadget/g1/bcdUSB 0x0200
     write /config/usb_gadget/g1/idVendor 0x2717
-    write /config/usb_gadget/g1/idProduct 0xff60
+    write /config/usb_gadget/g1/idProduct 0xFF60
     mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
     write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
     write /config/usb_gadget/g1/strings/0x409/manufacturer ${ro.product.manufacturer}
@@ -55,6 +53,9 @@ on property:sys.usb.config=adb && property:sys.usb.configfs=1
 on property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
     start adbd
 
+on property:sys.usb.config=mass_storage,adb && property:sys.usb.configfs=1
+    start adbd
+
 on property:sys.usb.ffs.ready=1 && property:sys.usb.config=adb && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
@@ -69,7 +70,7 @@ on property:sys.usb.config=mtp && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
     write /config/usb_gadget/g1/idVendor 0x2717
-    write /config/usb_gadget/g1/idProduct 0xff60
+    write /config/usb_gadget/g1/idProduct 0xFF60
     symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
@@ -82,8 +83,22 @@ on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb && property:s
     rm /config/usb_gadget/g1/configs/b.1/f4
     rm /config/usb_gadget/g1/configs/b.1/f5
     write /config/usb_gadget/g1/idVendor 0x2717
-    write /config/usb_gadget/g1/idProduct 0xff68
+    write /config/usb_gadget/g1/idProduct 0xFF68
     symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
     symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mass_storage,adb && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb_msc"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    rm /config/usb_gadget/g1/configs/b.1/f3
+    rm /config/usb_gadget/g1/configs/b.1/f4
+    rm /config/usb_gadget/g1/configs/b.1/f5
+    write /config/usb_gadget/g1/idVendor 0x2717
+    write /config/usb_gadget/g1/idProduct 0xFF28
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/mass_storage.0 /config/usb_gadget/g1/configs/b.1/f2
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
