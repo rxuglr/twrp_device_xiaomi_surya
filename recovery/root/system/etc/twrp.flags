@@ -7,6 +7,10 @@
 /system_ext       ext4   /dev/block/mapper/system_ext            flags=backup=0;removable
 /vendor           ext4   /dev/block/mapper/vendor                flags=backup=0;removable
 /product          ext4   /dev/block/mapper/product               flags=backup=0;removable
+/system_root      erofs   /dev/block/mapper/system                flags=backup=0;removable
+/system_ext       erofs   /dev/block/mapper/system_ext            flags=backup=0;removable
+/vendor           erofs   /dev/block/mapper/vendor                flags=backup=0;removable
+/product          erofs   /dev/block/mapper/product               flags=backup=0;removable
 /metadata         ext4   /dev/block/sda10                        flags=display=Metadata
 /boot             emmc   /dev/block/sde46
 /dtbo             emmc   /dev/block/sde47                       flags=backup=1;display="DTBO";flashimg
