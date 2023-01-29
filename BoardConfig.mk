@@ -42,17 +42,12 @@ BOARD_KERNEL_CMDLINE := \
     console=ttyMSM0,115200n8 \
     androidboot.hardware=qcom \
     androidboot.console=ttyMSM0 \
-    androidboot.memcg=1 \
     lpm_levels.sleep_disabled=1 \
-    video=vfb:640x400,bpp=32,memsize=3072000 \
     msm_rtb.filter=0x237 \
     service_locator.enable=1 \
     androidboot.usbcontroller=a600000.dwc3 \
     swiotlb=2048 \
     androidboot.boot_devices=soc/1d84000.ufshc \
-    cgroup.memory=nokmem,nosocket \
-    androidboot.init_fatal_reboot_target=recovery \
-    androidboot.fastboot=1 \
     androidboot.selinux=permissive
 
 BOARD_KERNEL_IMAGE_NAME    := Image
@@ -159,6 +154,7 @@ TW_SUPPORT_INPUT_1_2_HAPTICS := true
 TW_CUSTOM_CLOCK_POS := 30
 TW_CUSTOM_CPU_POS := 375
 TW_CUSTOM_BATTERY_POS := 895
+TW_BACKUP_EXCLUSIONS := /data/fonts
 
 #SHRP-specific lines
 SHRP_PATH := device/xiaomi/surya
@@ -174,20 +170,29 @@ SHRP_FLASH_MAX_BRIGHTNESS := 255
 SHRP_REC_TYPE := SAR
 SHRP_REC := /dev/block/bootdevice/by-name/recovery
 SHRP_DEVICE_TYPE := A_Only
-SHRP_EXPRESS := true
-SHRP_EXPRESS_USE_DATA := true
+#SHRP_EXPRESS := true
+#SHRP_EXPRESS_USE_DATA := true
 SHRP_DARK := true
 
 #SHRP Addons
-#SHRP_EXTERNAL_ADDON_PATH := $(DEVICE_PATH)/addons/
-#SHRP_INC_IN_REC_ADDON_3 := true
-#INC_IN_REC_MAGISK := true
-#SHRP_EXTERNAL_ADDON_1_NAME := dynDFE
-#SHRP_EXTERNAL_ADDON_1_INFO := "This will disable force encryption of your device."
-#SHRP_EXTERNAL_ADDON_1_FILENAME := dynDFE.zip
-#SHRP_EXTERNAL_ADDON_1_BTN_TEXT := Disable
-#SHRP_EXTERNAL_ADDON_1_SUCCESSFUL_TEXT := Disabled
-#SHRP_INC_IN_REC_EXTERNAL_ADDON_1 := true
+SHRP_SKIP_DEFAULT_ADDON_1 := true
+SHRP_SKIP_DEFAULT_ADDON_2 := true
+SHRP_SKIP_DEFAULT_ADDON_3 := true
+SHRP_SKIP_DEFAULT_ADDON_4 := true
+INC_IN_REC_MAGISK := true
+SHRP_EXTERNAL_ADDON_PATH := $(DEVICE_PATH)/addons/
+SHRP_EXTERNAL_ADDON_1_NAME := "Mount Super as RW"
+SHRP_EXTERNAL_ADDON_1_INFO := "This will mount your system partitions as RW"
+SHRP_EXTERNAL_ADDON_1_FILENAME := mountrw.zip
+SHRP_EXTERNAL_ADDON_1_BTN_TEXT := Mount
+SHRP_EXTERNAL_ADDON_1_SUCCESSFUL_TEXT := Mounted
+SHRP_INC_IN_REC_EXTERNAL_ADDON_1 := true
+SHRP_EXTERNAL_ADDON_2_NAME := dynDFE
+SHRP_EXTERNAL_ADDON_2_INFO := "This will disable force encryption of your device."
+SHRP_EXTERNAL_ADDON_2_FILENAME := dynDFE.zip
+SHRP_EXTERNAL_ADDON_2_BTN_TEXT := Disable
+SHRP_EXTERNAL_ADDON_2_SUCCESSFUL_TEXT := Disabled
+SHRP_INC_IN_REC_EXTERNAL_ADDON_2 := true
 
 # The path to a temperature sensor
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone19/temp"
