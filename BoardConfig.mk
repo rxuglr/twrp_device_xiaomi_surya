@@ -140,11 +140,11 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-#TW_EXTRA_LANGUAGES := true
+TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 1200
-TW_Y_OFFSET := 0
+#TW_Y_OFFSET := 0
 #TW_H_OFFSET := -35
 TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
@@ -155,44 +155,6 @@ TW_CUSTOM_CLOCK_POS := 30
 TW_CUSTOM_CPU_POS := 375
 TW_CUSTOM_BATTERY_POS := 895
 TW_BACKUP_EXCLUSIONS := /data/fonts
-
-#SHRP-specific lines
-SHRP_PATH := device/xiaomi/surya
-SHRP_MAINTAINER := rxuglr
-SHRP_DEVICE_CODE := surya
-SHRP_OFFICIAL := true
-SHRP_EDL_MODE := 1
-SHRP_INTERNAL := /sdcard
-SHRP_EXTERNAL := /sdcard1
-SHRP_OTG := /usb_otg
-SHRP_FLASH := 1
-SHRP_FLASH_MAX_BRIGHTNESS := 255
-SHRP_REC_TYPE := SAR
-SHRP_REC := /dev/block/bootdevice/by-name/recovery
-SHRP_DEVICE_TYPE := A_Only
-#SHRP_EXPRESS := true
-#SHRP_EXPRESS_USE_DATA := true
-SHRP_DARK := true
-
-#SHRP Addons
-SHRP_SKIP_DEFAULT_ADDON_1 := true
-SHRP_SKIP_DEFAULT_ADDON_2 := true
-SHRP_SKIP_DEFAULT_ADDON_3 := true
-SHRP_SKIP_DEFAULT_ADDON_4 := true
-INC_IN_REC_MAGISK := true
-SHRP_EXTERNAL_ADDON_PATH := $(DEVICE_PATH)/addons/
-SHRP_EXTERNAL_ADDON_1_NAME := "Mount Super as RW"
-SHRP_EXTERNAL_ADDON_1_INFO := "This will mount your system partitions as RW"
-SHRP_EXTERNAL_ADDON_1_FILENAME := mountrw.zip
-SHRP_EXTERNAL_ADDON_1_BTN_TEXT := Mount
-SHRP_EXTERNAL_ADDON_1_SUCCESSFUL_TEXT := Mounted
-SHRP_INC_IN_REC_EXTERNAL_ADDON_1 := true
-SHRP_EXTERNAL_ADDON_2_NAME := dynDFE
-SHRP_EXTERNAL_ADDON_2_INFO := "This will disable force encryption of your device."
-SHRP_EXTERNAL_ADDON_2_FILENAME := dynDFE.zip
-SHRP_EXTERNAL_ADDON_2_BTN_TEXT := Disable
-SHRP_EXTERNAL_ADDON_2_SUCCESSFUL_TEXT := Disabled
-SHRP_INC_IN_REC_EXTERNAL_ADDON_2 := true
 
 # The path to a temperature sensor
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone19/temp"
